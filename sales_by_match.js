@@ -8,5 +8,19 @@
  */
 
 function sockMerchant(n, ar) {
-  // Write your code here
+  let totalPairs = 0;
+  let tempArr = [];
+  for (let i = 0; i < ar.length; i++) {
+    if (tempArr.includes(ar[i])) {
+      totalPairs++;
+      tempArr.splice(tempArr.indexOf(ar[i]), 1);
+    } else {
+      tempArr.push(ar[i]);
+    }
+  }
+
+  return totalPairs;
 }
+
+console.log(sockMerchant(7, [1, 2, 1, 2, 1, 3, 2])); // => 2
+console.log(sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20])); // => 2
