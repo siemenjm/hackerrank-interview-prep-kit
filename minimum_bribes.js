@@ -5,5 +5,45 @@
  */
 
 function minimumBribes(q) {
-  // Write your code here
+  // let totalBribes = 0;
+  // for (let i = 0; i < q.length; i++) {
+  //   if (q[i] > i + 1) {
+  //     let bribes = q[i] - (i + 1);
+  //     if (bribes > 2) {
+  //       console.log('Too chaotic');
+  //       return;
+  //     }
+
+  //     totalBribes += bribes;
+  //   }
+  // }
+
+  // console.log(totalBribes);
+  // return;
+
+  let totalBribes = 0;
+  for (let i = 0; i < q.length - 1; i++) {
+    let bribes = 0;
+    for (let j = i + 1; j < q.length; j++) {
+      if (q[i] > q[j]) {
+        bribes++;
+        if (bribes > 2) {
+          console.log('Too chaotic');
+          return;
+        }
+      }
+    }
+
+    totalBribes += bribes;
+  }
+
+  console.log(totalBribes);
+  return;
 }
+
+console.log(minimumBribes([1, 2, 3, 5, 4, 6, 7, 8])); // => 1
+console.log(minimumBribes([4, 1, 2, 3])); // => 'Too chaotic'
+console.log(minimumBribes([2, 1, 5, 3, 4])); // => 3
+console.log(minimumBribes([2, 5, 1, 3, 4])); // => 'Too chaotic'
+console.log(minimumBribes([5, 1, 2, 3, 7, 8, 6, 4])); // => 'Too chaotic'
+console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4])); // => 7
