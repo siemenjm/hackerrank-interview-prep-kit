@@ -21,24 +21,40 @@ function minimumBribes(q) {
   // console.log(totalBribes);
   // return;
 
+  // let totalBribes = 0;
+  // for (let i = 0; i < q.length - 1; i++) {
+  //   let bribes = 0;
+  //   for (let j = i + 1; j < q.length; j++) {
+  //     if (q[i] > q[j]) {
+  //       bribes++;
+  //       if (bribes > 2) {
+  //         console.log('Too chaotic');
+  //         return;
+  //       }
+  //     }
+  //   }
+
+  //   totalBribes += bribes;
+  // }
+
+  // console.log(totalBribes);
+  // return;
+
   let totalBribes = 0;
-  for (let i = 0; i < q.length - 1; i++) {
-    let bribes = 0;
-    for (let j = i + 1; j < q.length; j++) {
-      if (q[i] > q[j]) {
-        bribes++;
-        if (bribes > 2) {
-          console.log('Too chaotic');
-          return;
-        }
-      }
+  for (let i = q.length - 1; i >= 0; i--) {
+    if (q[i] - i - 1 > 2) {
+      console.log('Too chaotic');
+      return;
     }
 
-    totalBribes += bribes;
+    for (let j = Math.max(0, q[i] - 2); j < i; j++) {
+      if (q[j] > q[i]) {
+        totalBribes++;
+      }
+    }
   }
 
   console.log(totalBribes);
-  return;
 }
 
 console.log(minimumBribes([1, 2, 3, 5, 4, 6, 7, 8])); // => 1
